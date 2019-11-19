@@ -21,6 +21,7 @@ namespace PartyAtHomes_WebApi.Context
                 .HasData(
                 new User
                 {
+                    Id = Guid.NewGuid(),
                     FirstName = "chakalaka",
                     LastName = "Boom Boom",
                     UserName = "ChakBoom",

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PartyAtHomes_WebApi.Repositories;
 
 namespace PartyAtHomes_WebApi.Controllers
 {
@@ -11,9 +12,10 @@ namespace PartyAtHomes_WebApi.Controllers
     [ApiController]
     public class EventsController : ControllerBase
     {
-        public EventsController()
+        private EventRepository _eventRepository;
+        public EventsController(EventRepository eventRepository)
         {
-
+            _eventRepository = eventRepository;
         }
         //webapi check => check if the start Url is set correctly in launchSettings
         [HttpGet]

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29509.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyAtHomes_WebApi", "PartyAtHomes_WebApi\PartyAtHomes_WebApi.csproj", "{F8271FC6-1FC1-464B-8CE8-007FE6A53937}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyAtHomes_Lib", "PartyAtHomes_Lib\PartyAtHomes_Lib.csproj", "{30AB67A0-B156-4E2B-946A-C2A4D0DBEFCA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8271FC6-1FC1-464B-8CE8-007FE6A53937}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8271FC6-1FC1-464B-8CE8-007FE6A53937}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8271FC6-1FC1-464B-8CE8-007FE6A53937}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8271FC6-1FC1-464B-8CE8-007FE6A53937}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30AB67A0-B156-4E2B-946A-C2A4D0DBEFCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30AB67A0-B156-4E2B-946A-C2A4D0DBEFCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30AB67A0-B156-4E2B-946A-C2A4D0DBEFCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30AB67A0-B156-4E2B-946A-C2A4D0DBEFCA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DE59D1C7-0AD9-4212-B2A1-2E54D3CA793D}
+	EndGlobalSection
+EndGlobal

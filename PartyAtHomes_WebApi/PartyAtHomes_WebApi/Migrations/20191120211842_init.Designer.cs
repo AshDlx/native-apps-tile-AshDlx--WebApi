@@ -10,7 +10,7 @@ using PartyAtHomes_WebApi.Context;
 namespace PartyAtHomes_WebApi.Migrations
 {
     [DbContext(typeof(PartyAtHomesContext))]
-    [Migration("20191119213239_init")]
+    [Migration("20191120211842_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,7 +67,23 @@ namespace PartyAtHomes_WebApi.Migrations
 
                     b.HasIndex("CreatorId");
 
-                    b.ToTable("Event");
+                    b.ToTable("Events");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("6c1c3a63-834a-4d14-b040-fa41a02e1071"),
+                            AdressCity = "Tielt",
+                            AdressCountry = "Belgium",
+                            AdressNumber = "3",
+                            CreatorId = new Guid("2e6b0565-4412-431f-bab3-37c7fcdb725e"),
+                            DescriptionEvent = "Test Event",
+                            EndDateTime = new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EventName = "Test",
+                            LocationLat = 0.0,
+                            LocationLng = 0.0,
+                            StartDateTime = new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("PartyAtHomes_Lib.User", b =>
@@ -95,7 +111,7 @@ namespace PartyAtHomes_WebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("02424475-4a42-4fb6-b033-a7634004cb91"),
+                            Id = new Guid("2e6b0565-4412-431f-bab3-37c7fcdb725e"),
                             FirstName = "chakalaka",
                             LastName = "Boom Boom",
                             Password = "123AZERTY",

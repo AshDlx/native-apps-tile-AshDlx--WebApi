@@ -34,6 +34,7 @@ namespace PartyAtHomes_WebApi
                    options.UseSqlServer(Configuration.GetConnectionString("PartyAtHomesDb")));
 
             services.AddScoped<EventRepository>();
+            services.AddScoped<AccountRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

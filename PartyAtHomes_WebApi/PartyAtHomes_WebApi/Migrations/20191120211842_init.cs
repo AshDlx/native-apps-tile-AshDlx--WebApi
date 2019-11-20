@@ -23,7 +23,7 @@ namespace PartyAtHomes_WebApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Event",
+                name: "Events",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -42,9 +42,9 @@ namespace PartyAtHomes_WebApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Event", x => x.Id);
+                    table.PrimaryKey("PK_Events", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Event_Users_CreatorId",
+                        name: "FK_Events_Users_CreatorId",
                         column: x => x.CreatorId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -54,18 +54,23 @@ namespace PartyAtHomes_WebApi.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "FirstName", "LastName", "Password", "UserName" },
-                values: new object[] { new Guid("02424475-4a42-4fb6-b033-a7634004cb91"), "chakalaka", "Boom Boom", "123AZERTY", "ChakBoom" });
+                values: new object[] { new Guid("2e6b0565-4412-431f-bab3-37c7fcdb725e"), "chakalaka", "Boom Boom", "123AZERTY", "ChakBoom" });
+
+            migrationBuilder.InsertData(
+                table: "Events",
+                columns: new[] { "Id", "AdressCity", "AdressCountry", "AdressNumber", "AdressStreet", "CreatorId", "DescriptionEvent", "EndDateTime", "EventName", "LocationLat", "LocationLng", "MainImage", "StartDateTime" },
+                values: new object[] { new Guid("6c1c3a63-834a-4d14-b040-fa41a02e1071"), "Tielt", "Belgium", "3", null, new Guid("2e6b0565-4412-431f-bab3-37c7fcdb725e"), "Test Event", new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test", 0.0, 0.0, null, new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Event_CreatorId",
-                table: "Event",
+                name: "IX_Events_CreatorId",
+                table: "Events",
                 column: "CreatorId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Event");
+                name: "Events");
 
             migrationBuilder.DropTable(
                 name: "Users");

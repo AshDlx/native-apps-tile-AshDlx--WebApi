@@ -16,16 +16,32 @@ namespace PartyAtHomes_WebApi.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            var user = new User
+            {
+                Id = Guid.NewGuid(),
+                FirstName = "chakalaka",
+                LastName = "Boom Boom",
+                UserName = "ChakBoom",
+                Password = "123AZERTY"
+            };
             modelBuilder.Entity<User>()
                 .ToTable("Users")
+                .HasData(user);
+
+            modelBuilder.Entity<Event>()
+                .ToTable("Events")
                 .HasData(
-                new User
+                new Event
                 {
                     Id = Guid.NewGuid(),
-                    FirstName = "chakalaka",
-                    LastName = "Boom Boom",
-                    UserName = "ChakBoom",
-                    Password = "123AZERTY"
+                    EventName = "Test",
+                    StartDateTime = new DateTime(2019, 11, 04),
+                    EndDateTime = new DateTime(2019, 11, 04),
+                    AdressCountry = "Belgium",
+                    AdressCity = "Tielt",
+                    AdressNumber = "3",
+                    DescriptionEvent = "Test Event",
+                    CreatorId = user.Id
                 });
         }
 

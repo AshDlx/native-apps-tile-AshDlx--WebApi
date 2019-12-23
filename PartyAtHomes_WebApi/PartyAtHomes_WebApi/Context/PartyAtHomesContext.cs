@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PartyAtHomes_Lib;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PartyAtHomes_WebApi.Context
 {
@@ -33,15 +30,31 @@ namespace PartyAtHomes_WebApi.Context
                 .HasData(
                 new Event
                 {
-                    Id = Guid.NewGuid(),
-                    EventName = "Test",
+                    Id = 1,
+                    EventName = "Test1",
                     StartDateTime = new DateTime(2019, 11, 04),
                     EndDateTime = new DateTime(2019, 11, 04),
                     AdressCountry = "Belgium",
                     AdressCity = "Tielt",
+                    AdressStreet = "Sint Janstraat",
                     AdressNumber = "3",
-                    DescriptionEvent = "Test Event",
-                    CreatorId = user.Id
+                    DescriptionEvent = "test event tielt",
+                    CreatorId = user.Id,
+                    MainImage = "paris.jpg"
+                },
+                new Event 
+                {
+                    Id = 2,
+                    EventName = "Test2",
+                    StartDateTime = new DateTime(2019, 11, 04),
+                    EndDateTime = new DateTime(2019, 11, 04),
+                    AdressCountry = "Belgium",
+                    AdressCity = "Brugge",
+                    AdressNumber = "3",
+                    AdressStreet = "Rijselstraat",
+                    DescriptionEvent = "Test Event Brugge",
+                    CreatorId = user.Id,
+                    MainImage = "paris.jpg"
                 });
         }
 

@@ -26,7 +26,8 @@ namespace PartyAtHomes_WebApi.Migrations
                 name: "Events",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     EventName = table.Column<string>(nullable: true),
                     MainImage = table.Column<string>(nullable: true),
                     AdressCity = table.Column<string>(nullable: true),
@@ -54,12 +55,17 @@ namespace PartyAtHomes_WebApi.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "FirstName", "LastName", "Password", "UserName" },
-                values: new object[] { new Guid("2e6b0565-4412-431f-bab3-37c7fcdb725e"), "chakalaka", "Boom Boom", "123AZERTY", "ChakBoom" });
+                values: new object[] { new Guid("d9aa745e-a3c0-4fe6-95a6-40e80af5b1d5"), "chakalaka", "Boom Boom", "123AZERTY", "ChakBoom" });
 
             migrationBuilder.InsertData(
                 table: "Events",
                 columns: new[] { "Id", "AdressCity", "AdressCountry", "AdressNumber", "AdressStreet", "CreatorId", "DescriptionEvent", "EndDateTime", "EventName", "LocationLat", "LocationLng", "MainImage", "StartDateTime" },
-                values: new object[] { new Guid("6c1c3a63-834a-4d14-b040-fa41a02e1071"), "Tielt", "Belgium", "3", null, new Guid("2e6b0565-4412-431f-bab3-37c7fcdb725e"), "Test Event", new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test", 0.0, 0.0, null, new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                values: new object[] { 1L, "Tielt", "Belgium", "3", "Sint Janstraat", new Guid("d9aa745e-a3c0-4fe6-95a6-40e80af5b1d5"), "test event tielt", new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test1", 0.0, 0.0, "paris.jpg", new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "Events",
+                columns: new[] { "Id", "AdressCity", "AdressCountry", "AdressNumber", "AdressStreet", "CreatorId", "DescriptionEvent", "EndDateTime", "EventName", "LocationLat", "LocationLng", "MainImage", "StartDateTime" },
+                values: new object[] { 2L, "Brugge", "Belgium", "3", "Rijselstraat", new Guid("d9aa745e-a3c0-4fe6-95a6-40e80af5b1d5"), "Test Event Brugge", new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test2", 0.0, 0.0, "paris.jpg", new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Events_CreatorId",

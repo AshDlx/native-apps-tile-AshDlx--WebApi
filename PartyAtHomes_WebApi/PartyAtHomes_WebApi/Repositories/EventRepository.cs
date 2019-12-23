@@ -5,32 +5,36 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 
 namespace PartyAtHomes_WebApi.Repositories
 {
     public class EventRepository
     {
         private readonly PartyAtHomesContext _context;
-        public EventRepository(PartyAtHomesContext context)
+        private readonly IMapper _mapper;
+        public EventRepository(PartyAtHomesContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
-        public async Task<List<Event>> GetAll()
+        public async Task<List<EventDto>> GetAllDto()
         {
-            return await _context.Event.ToListAsync();
+            return await _context.Event.ProjectTo<EventDto>(_mapper.ConfigurationProvider).AsNoTracking().ToListAsync();
         }
 
-        public async Task<Event> GetById(Guid id)
+        public async Task<Event> GetById(long id)
         {
             return await _context.Event.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<bool> Create(Event even, User user)
+        public async Task<bool> Create(EventCRUDDto eventToCreate)
         {
             try
             {
-                even.CreatorId = user.Id;
-                await _context.AddAsync(even);
+                //validate event
+                await _context.AddAsync(eventToCreate);
                 await _context.SaveChangesAsync();
                 return true;
             }
@@ -40,15 +44,21 @@ namespace PartyAtHomes_WebApi.Repositories
             }
         }
 
-        public async Task<Event> Update(Event even, User user)
+        public async Task<Event> Update(Event eventToUpdate)
         {
-            if(even != await _context.Event.FirstOrDefaultAsync(x => x.Id == even.Id))
+            if(eventToUpdate != await _context.Event.FirstOrDefaultAsync(x => x.Id == eventToUpdate.Id))
             {
-                _context.Event.Update(even);
+                //validate event
+                _context.Event.Update(eventToUpdate);
                 await _context.SaveChangesAsync();
             }
 
-            return await GetById(even.Id);
+            return await GetById(eventToUpdate.Id);
+        }
+
+        public async Task<List<EventDto>> GetEventsByUser(Guid id)
+        {
+            return await _context.Event.Where(x => x.CreatorId == id).ProjectTo<EventDto>(_mapper.ConfigurationProvider).AsNoTracking().ToListAsync();
         }
     }
 }

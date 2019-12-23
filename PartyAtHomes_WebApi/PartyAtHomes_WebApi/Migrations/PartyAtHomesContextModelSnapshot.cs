@@ -21,9 +21,10 @@ namespace PartyAtHomes_WebApi.Migrations
 
             modelBuilder.Entity("PartyAtHomes_Lib.Event", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AdressCity")
                         .HasColumnType("nvarchar(max)");
@@ -70,16 +71,34 @@ namespace PartyAtHomes_WebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("6c1c3a63-834a-4d14-b040-fa41a02e1071"),
+                            Id = 1L,
                             AdressCity = "Tielt",
                             AdressCountry = "Belgium",
                             AdressNumber = "3",
-                            CreatorId = new Guid("2e6b0565-4412-431f-bab3-37c7fcdb725e"),
-                            DescriptionEvent = "Test Event",
+                            AdressStreet = "Sint Janstraat",
+                            CreatorId = new Guid("d9aa745e-a3c0-4fe6-95a6-40e80af5b1d5"),
+                            DescriptionEvent = "test event tielt",
                             EndDateTime = new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EventName = "Test",
+                            EventName = "Test1",
                             LocationLat = 0.0,
                             LocationLng = 0.0,
+                            MainImage = "paris.jpg",
+                            StartDateTime = new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            AdressCity = "Brugge",
+                            AdressCountry = "Belgium",
+                            AdressNumber = "3",
+                            AdressStreet = "Rijselstraat",
+                            CreatorId = new Guid("d9aa745e-a3c0-4fe6-95a6-40e80af5b1d5"),
+                            DescriptionEvent = "Test Event Brugge",
+                            EndDateTime = new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EventName = "Test2",
+                            LocationLat = 0.0,
+                            LocationLng = 0.0,
+                            MainImage = "paris.jpg",
                             StartDateTime = new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -109,7 +128,7 @@ namespace PartyAtHomes_WebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2e6b0565-4412-431f-bab3-37c7fcdb725e"),
+                            Id = new Guid("d9aa745e-a3c0-4fe6-95a6-40e80af5b1d5"),
                             FirstName = "chakalaka",
                             LastName = "Boom Boom",
                             Password = "123AZERTY",
@@ -120,7 +139,7 @@ namespace PartyAtHomes_WebApi.Migrations
             modelBuilder.Entity("PartyAtHomes_Lib.Event", b =>
                 {
                     b.HasOne("PartyAtHomes_Lib.User", "Creator")
-                        .WithMany()
+                        .WithMany("Events")
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

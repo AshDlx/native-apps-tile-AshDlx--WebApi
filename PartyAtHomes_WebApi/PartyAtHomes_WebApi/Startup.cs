@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using PartyAtHomes_WebApi.Context;
 using PartyAtHomes_WebApi.Repositories;
+using PartyAtHomes_WebApi.Services;
 
 namespace PartyAtHomes_WebApi
 {
@@ -28,6 +29,14 @@ namespace PartyAtHomes_WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //AutoMapper
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new AutoMapperProfileConfiguration());
+            });
+            var mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
+
             services.AddControllers();
             services.AddCors();
             services.AddDbContext<PartyAtHomesContext>(options =>
@@ -35,6 +44,7 @@ namespace PartyAtHomes_WebApi
 
             services.AddScoped<EventRepository>();
             services.AddScoped<AccountRepository>();
+            services.AddScoped<ValidationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +64,7 @@ namespace PartyAtHomes_WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseStaticFiles();
 
             app.UseAuthorization();
 

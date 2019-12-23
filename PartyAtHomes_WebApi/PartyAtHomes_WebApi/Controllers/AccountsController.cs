@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PartyAtHomes_Lib;
+using PartyAtHomes_WebApi.Repositories;
 
 namespace PartyAtHomes_WebApi.Controllers
 {
@@ -11,22 +9,27 @@ namespace PartyAtHomes_WebApi.Controllers
     [ApiController]
     public class AccountsController : ControllerBase
     {
-        AccountsController _accountsController;
-        public AccountsController(AccountsController accountsController)
+        AccountRepository _accountsRepository;
+        public AccountsController(AccountRepository accountsRepository)
         {
-            _accountsController = accountsController;
+            _accountsRepository = accountsRepository;
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login()
+        public async Task<IActionResult> Login(LoginDto login)
         {
-            return Ok();
+            if (await _accountsRepository.Login(login) != null)
+            {
+                return Ok(await _accountsRepository.Login(login));
+            }
+
+            return BadRequest();
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register()
+        public async Task<IActionResult> Register(RegisterDto register)
         {
-            return Ok();
+            return Ok(await _accountsRepository.Register(register));
         }
     }
 }

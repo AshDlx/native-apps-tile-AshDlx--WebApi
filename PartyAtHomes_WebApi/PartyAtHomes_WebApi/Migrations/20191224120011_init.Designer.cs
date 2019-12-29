@@ -10,7 +10,7 @@ using PartyAtHomes_WebApi.Context;
 namespace PartyAtHomes_WebApi.Migrations
 {
     [DbContext(typeof(PartyAtHomesContext))]
-    [Migration("20191204184017_init")]
+    [Migration("20191224120011_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,22 +28,16 @@ namespace PartyAtHomes_WebApi.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AdressCity")
+                    b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AdressCountry")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AdressNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AdressStreet")
+                    b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("CreatorId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("DescriptionEvent")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("EndDateTime")
@@ -61,8 +55,14 @@ namespace PartyAtHomes_WebApi.Migrations
                     b.Property<string>("MainImage")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Number")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("StartDateTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Street")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -74,34 +74,34 @@ namespace PartyAtHomes_WebApi.Migrations
                         new
                         {
                             Id = 1L,
-                            AdressCity = "Tielt",
-                            AdressCountry = "Belgium",
-                            AdressNumber = "3",
-                            AdressStreet = "Sint Janstraat",
-                            CreatorId = new Guid("d9aa745e-a3c0-4fe6-95a6-40e80af5b1d5"),
-                            DescriptionEvent = "test event tielt",
+                            City = "Tielt",
+                            Country = "Belgium",
+                            CreatorId = new Guid("8d948780-eb93-4b48-923a-555c44288fb1"),
+                            Description = "test event tielt",
                             EndDateTime = new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventName = "Test1",
                             LocationLat = 0.0,
                             LocationLng = 0.0,
                             MainImage = "paris.jpg",
-                            StartDateTime = new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Number = "3",
+                            StartDateTime = new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Street = "Sint Janstraat"
                         },
                         new
                         {
                             Id = 2L,
-                            AdressCity = "Brugge",
-                            AdressCountry = "Belgium",
-                            AdressNumber = "3",
-                            AdressStreet = "Rijselstraat",
-                            CreatorId = new Guid("d9aa745e-a3c0-4fe6-95a6-40e80af5b1d5"),
-                            DescriptionEvent = "Test Event Brugge",
+                            City = "Brugge",
+                            Country = "Belgium",
+                            CreatorId = new Guid("8d948780-eb93-4b48-923a-555c44288fb1"),
+                            Description = "Test Event Brugge",
                             EndDateTime = new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventName = "Test2",
                             LocationLat = 0.0,
                             LocationLng = 0.0,
                             MainImage = "paris.jpg",
-                            StartDateTime = new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Number = "3",
+                            StartDateTime = new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Street = "Rijselstraat"
                         });
                 });
 
@@ -130,7 +130,7 @@ namespace PartyAtHomes_WebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d9aa745e-a3c0-4fe6-95a6-40e80af5b1d5"),
+                            Id = new Guid("8d948780-eb93-4b48-923a-555c44288fb1"),
                             FirstName = "chakalaka",
                             LastName = "Boom Boom",
                             Password = "123AZERTY",

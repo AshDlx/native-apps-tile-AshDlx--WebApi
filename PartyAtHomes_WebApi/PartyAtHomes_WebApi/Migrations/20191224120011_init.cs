@@ -30,11 +30,11 @@ namespace PartyAtHomes_WebApi.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EventName = table.Column<string>(nullable: true),
                     MainImage = table.Column<string>(nullable: true),
-                    AdressCity = table.Column<string>(nullable: true),
-                    AdressCountry = table.Column<string>(nullable: true),
-                    AdressStreet = table.Column<string>(nullable: true),
-                    AdressNumber = table.Column<string>(nullable: true),
-                    DescriptionEvent = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true),
+                    Street = table.Column<string>(nullable: true),
+                    Number = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
                     StartDateTime = table.Column<DateTime>(nullable: false),
                     EndDateTime = table.Column<DateTime>(nullable: false),
                     LocationLat = table.Column<double>(nullable: false),
@@ -55,17 +55,17 @@ namespace PartyAtHomes_WebApi.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "FirstName", "LastName", "Password", "UserName" },
-                values: new object[] { new Guid("d9aa745e-a3c0-4fe6-95a6-40e80af5b1d5"), "chakalaka", "Boom Boom", "123AZERTY", "ChakBoom" });
+                values: new object[] { new Guid("8d948780-eb93-4b48-923a-555c44288fb1"), "chakalaka", "Boom Boom", "123AZERTY", "ChakBoom" });
 
             migrationBuilder.InsertData(
                 table: "Events",
-                columns: new[] { "Id", "AdressCity", "AdressCountry", "AdressNumber", "AdressStreet", "CreatorId", "DescriptionEvent", "EndDateTime", "EventName", "LocationLat", "LocationLng", "MainImage", "StartDateTime" },
-                values: new object[] { 1L, "Tielt", "Belgium", "3", "Sint Janstraat", new Guid("d9aa745e-a3c0-4fe6-95a6-40e80af5b1d5"), "test event tielt", new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test1", 0.0, 0.0, "paris.jpg", new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                columns: new[] { "Id", "City", "Country", "CreatorId", "Description", "EndDateTime", "EventName", "LocationLat", "LocationLng", "MainImage", "Number", "StartDateTime", "Street" },
+                values: new object[] { 1L, "Tielt", "Belgium", new Guid("8d948780-eb93-4b48-923a-555c44288fb1"), "test event tielt", new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test1", 0.0, 0.0, "paris.jpg", "3", new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sint Janstraat" });
 
             migrationBuilder.InsertData(
                 table: "Events",
-                columns: new[] { "Id", "AdressCity", "AdressCountry", "AdressNumber", "AdressStreet", "CreatorId", "DescriptionEvent", "EndDateTime", "EventName", "LocationLat", "LocationLng", "MainImage", "StartDateTime" },
-                values: new object[] { 2L, "Brugge", "Belgium", "3", "Rijselstraat", new Guid("d9aa745e-a3c0-4fe6-95a6-40e80af5b1d5"), "Test Event Brugge", new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test2", 0.0, 0.0, "paris.jpg", new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                columns: new[] { "Id", "City", "Country", "CreatorId", "Description", "EndDateTime", "EventName", "LocationLat", "LocationLng", "MainImage", "Number", "StartDateTime", "Street" },
+                values: new object[] { 2L, "Brugge", "Belgium", new Guid("8d948780-eb93-4b48-923a-555c44288fb1"), "Test Event Brugge", new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test2", 0.0, 0.0, "paris.jpg", "3", new DateTime(2019, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Rijselstraat" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Events_CreatorId",

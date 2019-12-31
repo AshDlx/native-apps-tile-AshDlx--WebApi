@@ -33,6 +33,7 @@ namespace PartyAtHomes_WebApi.Repositories
         {
             try
             {
+                eventToCreate.MainImage = "paris.jpg";
                 //validate event
                 await _context.AddAsync(eventToCreate);
                 await _context.SaveChangesAsync();

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PartyAtHomes_Lib;
 using PartyAtHomes_WebApi.Repositories;
@@ -54,6 +56,26 @@ namespace PartyAtHomes_WebApi.Controllers
         public async Task<IActionResult> GetEventsByUser(Guid id)
         {
             return Ok(await _eventRepository.GetEventsByUser(id));
+        }
+
+        [HttpPost]
+        [Route("Image")]
+        public async Task<IActionResult> Image([FromForm(Name = "file")]IFormFile formFile)
+        {
+            if (formFile == null)
+            {
+                Console.Write("formfile is leeg");
+            }
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(),
+            "wwwroot", "images", formFile.FileName);
+            if (formFile.Length > 0)
+            {
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await formFile.CopyToAsync(stream);
+                }
+            }
+            return Ok("Succes");
         }
     }
 }

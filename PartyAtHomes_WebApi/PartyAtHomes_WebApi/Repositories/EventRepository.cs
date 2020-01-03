@@ -21,7 +21,7 @@ namespace PartyAtHomes_WebApi.Repositories
         }
         public async Task<List<EventDto>> GetAllDto()
         {
-            return await _context.Event.ProjectTo<EventDto>(_mapper.ConfigurationProvider).AsNoTracking().ToListAsync();
+            return await _context.Event.OrderByDescending(x => x.StartDateTime).ProjectTo<EventDto>(_mapper.ConfigurationProvider).AsNoTracking().ToListAsync();
         }
 
         public async Task<Event> GetById(long id)
@@ -33,7 +33,8 @@ namespace PartyAtHomes_WebApi.Repositories
         {
             try
             {
-                eventToCreate.MainImage = "paris.jpg";
+                if(eventToCreate.MainImage == "")
+                    eventToCreate.MainImage = "paris.jpg";
                 //validate event
                 await _context.AddAsync(eventToCreate);
                 await _context.SaveChangesAsync();
